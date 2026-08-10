@@ -637,7 +637,7 @@ input:focus,textarea:focus{outline:2px solid var(--maroon);outline-offset:1px;}
 .footer__social-icon{
   display:flex;align-items:center;justify-content:center;
   width:34px;height:34px;border-radius:50%;
-  background:var(--cream-2);color:var(--maroon);
+  background:var(--maroon);color:#fff;
 }
 .footer__credit{font-size:.8rem;color:var(--muted);margin:0;}
 .footer__bottom{
