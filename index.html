@@ -321,7 +321,6 @@
   <p class="eyebrow center reveal">Reviews</p>
   <h2 class="center reveal" style="--i:1">312 reviews, 4.8★ on average</h2>
   <div class="testimonial">
-    <button class="round-btn" id="testimonialPrev" aria-label="Previous review">‹</button>
     <script type="application/json" id="testimonialData">
       [
         { "quote": "Café Mira has become my go-to spot for my daily coffee fix. The espresso is consistently rich and flavorful, and the baristas are true artists.", "name": "Sarah M.", "role": "A Coffee Lover’s Paradise" },
@@ -335,7 +334,10 @@
       <p class="testimonial__name" id="testimonialName">— Sarah M.</p>
       <p class="testimonial__role" id="testimonialRole">A Coffee Lover's Paradise</p>
     </div>
-    <button class="round-btn" id="testimonialNext" aria-label="Next review">›</button>
+    <div class="testimonial__nav">
+      <button class="round-btn" id="testimonialPrev" aria-label="Previous review">‹</button>
+      <button class="round-btn" id="testimonialNext" aria-label="Next review">›</button>
+    </div>
   </div>
 </section>
 
