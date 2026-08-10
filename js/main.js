@@ -92,6 +92,8 @@
   }
 
   // Testimonial carousel
+  // Testimonials are localized via a JSON <script id="testimonialData"> block in the page,
+  // so this file stays shared between language versions. Fallback covers pages without it.
   var testimonials = [
     {
       quote: 'Café Mira has become my go-to spot for my daily coffee fix. The espresso is consistently rich and flavorful, and the baristas are true artists.',
@@ -109,6 +111,13 @@
       role: 'Freelance Designer'
     }
   ];
+  var testimonialData = document.getElementById('testimonialData');
+  if (testimonialData) {
+    try {
+      var parsed = JSON.parse(testimonialData.textContent);
+      if (Array.isArray(parsed) && parsed.length) testimonials = parsed;
+    } catch (e) {}
+  }
   var tIndex = 0;
   var quoteEl = document.getElementById('testimonialQuote');
   var nameEl = document.getElementById('testimonialName');
@@ -145,7 +154,7 @@
   var status = document.getElementById('formStatus');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    status.textContent = 'Thank you! We’ll confirm your reservation within 24 hours.';
+    status.textContent = form.getAttribute('data-success-message') || 'Thank you! We’ll confirm your reservation within 24 hours.';
     form.reset();
   });
 
@@ -158,7 +167,7 @@
       var note = document.createElement('p');
       note.className = 'form-note';
       note.style.cssText = 'width:100%;margin-top:.75rem;font-size:.85rem;';
-      note.textContent = 'Thanks for signing up!';
+      note.textContent = nl.getAttribute('data-success-message') || 'Thanks for signing up!';
       nl.appendChild(note);
     }
   });

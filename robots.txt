@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /imprint.html
 Disallow: /privacy.html
+Disallow: /de/imprint.html
+Disallow: /de/privacy.html
 
 Sitemap: https://www.cafe-mira.example/sitemap.xml
