@@ -158,6 +158,12 @@ ul{margin:0;padding:0;list-style:none;}
 .nav__links{display:flex;align-items:center;gap:2rem;}
 .nav__links a:not(.btn){font-size:.9rem;font-weight:500;color:var(--ink);opacity:.85;}
 .nav__links a:not(.btn):hover{opacity:1;}
+.nav__links a.nav__lang{
+  font-size:.78rem;font-weight:700;letter-spacing:.03em;
+  padding:.3rem .7rem;border:1px solid var(--border);border-radius:999px;
+  opacity:1;
+}
+.nav__links a.nav__lang:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
 .nav__burger{
   display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem;
 }
