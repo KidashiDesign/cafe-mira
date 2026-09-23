@@ -675,29 +675,27 @@ input:focus,textarea:focus{outline:2px solid var(--maroon);outline-offset:1px;}
   text-decoration:none;
   border-radius:0 999px 999px 0;
   box-shadow:0 6px 18px rgba(43,27,18,.22);
-  transition:transform .25s ease, background-color .25s ease, box-shadow .25s ease;
+  transition:background-color .25s ease;
 }
 .kidashi-tab:hover,
 .kidashi-tab:focus-visible{
   background:#B4B993;
-  box-shadow:0 8px 22px rgba(43,27,18,.28);
-  transform:translateY(-50%) translateX(4px);
 }
 .kidashi-tab:focus-visible{
   outline:2px solid #fff;
   outline-offset:2px;
 }
 .kidashi-tab__icon{
-  display:inline-flex;
+  display:block;
   flex-shrink:0;
-  line-height:0;
+  width:14px;
+  height:14px;
 }
-.kidashi-tab__icon svg{display:block;width:14px;height:14px;}
 @media(max-width:640px){
   .kidashi-tab{
     padding:.65rem 1rem .65rem .75rem;
     font-size:.72rem;
     gap:.35rem;
   }
-  .kidashi-tab__icon svg{width:12px;height:12px;}
+  .kidashi-tab__icon{width:12px;height:12px;}
 }
