@@ -652,18 +652,17 @@ input:focus,textarea:focus{outline:2px solid var(--maroon);outline-offset:1px;}
   .footer__card--maroon{grid-template-columns:1fr;}
 }
 
-/* Kidashi Design – sticky side tab */
+/* Kidashi Design – sticky side tab (collapsible) */
 .kidashi-tab{
+  --kt-dur:0s;
   position:fixed;
   left:0;
   top:50%;
   transform:translateY(-50%);
   z-index:9999;
   display:flex;
-  align-items:center;
-  gap:.5rem;
+  align-items:stretch;
   min-height:44px;
-  padding:.8rem 1.3rem .8rem 1rem;
   background:#CBCFAE;
   color:#fff;
   font-family:var(--font-b);
@@ -672,18 +671,20 @@ input:focus,textarea:focus{outline:2px solid var(--maroon);outline-offset:1px;}
   line-height:1.1;
   letter-spacing:.01em;
   white-space:nowrap;
-  text-decoration:none;
   border-radius:0 999px 999px 0;
   box-shadow:0 6px 18px rgba(43,27,18,.22);
-  transition:background-color .25s ease;
+  overflow:hidden;
 }
-.kidashi-tab:hover,
-.kidashi-tab:focus-visible{
-  background:#B4B993;
-}
-.kidashi-tab:focus-visible{
-  outline:2px solid #fff;
-  outline-offset:2px;
+.kidashi-tab.is-ready{--kt-dur:.3s;}
+.kidashi-tab__link{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  max-width:16rem;
+  padding:.8rem 1rem;
+  color:inherit;
+  text-decoration:none;
+  transition:max-width var(--kt-dur) ease,padding var(--kt-dur) ease,opacity var(--kt-dur) ease,background-color .25s ease;
 }
 .kidashi-tab__icon{
   display:block;
@@ -691,11 +692,53 @@ input:focus,textarea:focus{outline:2px solid var(--maroon);outline-offset:1px;}
   width:14px;
   height:14px;
 }
+.kidashi-tab__toggle{
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:2.4rem;
+  padding:0;
+  border:0;
+  border-left:1px solid rgba(255,255,255,.55);
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  transition:background-color .25s ease;
+}
+.kidashi-tab__toggle[hidden]{display:none;}
+.kidashi-tab__toggle svg{
+  display:block;
+  transition:transform var(--kt-dur) ease;
+}
+.kidashi-tab__link:hover,
+.kidashi-tab__link:focus-visible,
+.kidashi-tab__toggle:hover,
+.kidashi-tab__toggle:focus-visible{
+  background:#B4B993;
+}
+.kidashi-tab__link:focus-visible,
+.kidashi-tab__toggle:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:-4px;
+}
+.kidashi-tab.is-collapsed .kidashi-tab__link{
+  max-width:0;
+  padding-left:0;
+  padding-right:0;
+  opacity:0;
+  visibility:hidden;
+  transition:max-width var(--kt-dur) ease,padding var(--kt-dur) ease,opacity var(--kt-dur) ease,visibility 0s linear var(--kt-dur);
+}
+.kidashi-tab.is-collapsed .kidashi-tab__toggle{border-left-color:transparent;}
+.kidashi-tab.is-collapsed .kidashi-tab__toggle svg{transform:rotate(180deg);}
 @media(max-width:640px){
-  .kidashi-tab{
-    padding:.65rem 1rem .65rem .75rem;
-    font-size:.72rem;
-    gap:.35rem;
-  }
+  .kidashi-tab{font-size:.72rem;}
+  .kidashi-tab__link{gap:.35rem;padding:.65rem .75rem;}
   .kidashi-tab__icon{width:12px;height:12px;}
+  .kidashi-tab__toggle{width:2rem;}
+  .kidashi-tab__toggle svg{width:12px;height:12px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .kidashi-tab.is-ready{--kt-dur:0s;}
 }

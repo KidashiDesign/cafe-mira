@@ -1,3 +1,37 @@
+// Kidashi Design side tab: collapsible, folded by default on small screens.
+// Kept in its own block at the top so it still runs on pages where the main
+// block below aborts early (no cookie banner on the legal pages).
+(function () {
+  var tab = document.getElementById('kidashiTab');
+  var toggle = document.getElementById('kidashiTabToggle');
+  if (!tab || !toggle) return;
+
+  var collapsed = window.matchMedia('(max-width: 640px)').matches;
+  try {
+    var saved = sessionStorage.getItem('kidashiTabCollapsed');
+    if (saved !== null) collapsed = saved === '1';
+  } catch (e) {}
+
+  function render() {
+    tab.classList.toggle('is-collapsed', collapsed);
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', collapsed ? toggle.dataset.labelShow : toggle.dataset.labelHide);
+  }
+
+  toggle.hidden = false;
+  render();
+  // Enable the slide animation only after the initial state is painted
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { tab.classList.add('is-ready'); });
+  });
+
+  toggle.addEventListener('click', function () {
+    collapsed = !collapsed;
+    render();
+    try { sessionStorage.setItem('kidashiTabCollapsed', collapsed ? '1' : '0'); } catch (e) {}
+  });
+})();
+
 (function () {
   var nav = document.getElementById('nav');
   var burger = document.getElementById('navBurger');
